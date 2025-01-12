@@ -13,15 +13,12 @@ class ObjList:
     def set_next(self, obj):
         self.__next = obj
 
-    @property
     def get_prev(self):
         return self.__prev
 
-    @property
     def get_data(self):
         return self.__data
 
-    @property
     def get_next(self):
         return self.__next
 
