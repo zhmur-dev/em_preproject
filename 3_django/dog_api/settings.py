@@ -13,7 +13,7 @@ SECRET_KEY = get_random_secret_key()
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'backend']
 
 
 INSTALLED_APPS = [
@@ -61,9 +61,9 @@ WSGI_APPLICATION = 'dog_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': getenv('DB_NAME', 'your_name'),
-        'USER': getenv('DB_USER', 'postgres'),
-        'PASSWORD': getenv('DB_PASSWORD', 'your_password'),
+        'NAME': getenv('POSTGRES_DB', 'your_name'),
+        'USER': getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': getenv('POSTGRES_PASSWORD', 'your_password'),
         'HOST': getenv('DB_HOST', 'localhost'),
         'PORT': getenv('DB_PORT', 5432),
     }
@@ -96,6 +96,7 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
