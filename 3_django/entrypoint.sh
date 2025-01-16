@@ -19,5 +19,5 @@ echo "Creating superuser..."
 echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.ru', 'admin')" | python manage.py shell
 
 # Start Gunicorn
-echo "Staring Gunicorn..."
+echo "Starting Gunicorn..."
 exec "$@"
