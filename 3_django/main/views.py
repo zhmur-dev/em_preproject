@@ -13,14 +13,24 @@ class BreedViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows breeds to be viewed or edited.
     """
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_permissions(self):
+        """
+        Modified get_permissions() method that restricts
+        permission_classes for POST, PUT and DELETE methods
+        to authorized users with Administrator rights only.
+        """
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
+        return super().get_permissions()
 
     def get_queryset(self):
         """
         Modified get_queryset() method that returns queryset
         depending on if "List View" or "Detail View" is made use of.
         """
-        if self.action == 'list' or self.action == 'post':
+        if self.action in ['list', 'create']:
             return Breed.objects.annotate(
                 dog_count=Count('dogs'),
             ).order_by('-id')
@@ -31,7 +41,7 @@ class BreedViewSet(viewsets.ModelViewSet):
         Modified get_serializer_class() method that returns serializer
         depending on if "List View" or "Detail View" is made use of.
         """
-        if self.action == 'list' or self.action == 'post':
+        if self.action in ['list', 'create']:
             return BreedListSerializer
         return BreedSerializer
 
@@ -40,14 +50,24 @@ class DogViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows dogs to be viewed or edited.
     """
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_permissions(self):
+        """
+        Modified get_permissions() method that restricts
+        permission_classes for POST, PUT and DELETE methods
+        to authorized users only.
+        """
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAuthenticated()]
+        return super().get_permissions()
 
     def get_queryset(self):
         """
         Modified get_queryset() method that returns queryset
         depending on if "List View" or "Detail View" is made use of.
         """
-        if self.action == 'list' or self.action == 'post':
+        if self.action in ['list', 'create']:
             return Dog.objects.annotate(
                 avg_age=Round(Avg('breed__dogs__age'), precision=2)
             ).order_by('-id')
@@ -60,6 +80,6 @@ class DogViewSet(viewsets.ModelViewSet):
         Modified get_serializer_class() method that returns serializer
         depending on if "List View" or "Detail View" is made use of.
         """
-        if self.action == 'list' or self.action == 'post':
+        if self.action in ['list', 'create']:
             return DogListSerializer
         return DogDetailSerializer
