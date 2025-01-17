@@ -79,6 +79,7 @@ class Dog(models.Model):
         on_delete=models.CASCADE,
         blank=False,
         null=False,
+        related_name='dogs',
     )
     gender = models.CharField(
         max_length=CHARFIELD_MAXLENGTH,

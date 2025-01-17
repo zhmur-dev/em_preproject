@@ -5,8 +5,8 @@ from . import views
 
 
 router = routers.DefaultRouter()
-router.register(r'breeds', views.BreedViewSet)
-router.register(r'dogs', views.DogViewSet)
+router.register(r'breeds', views.BreedViewSet, basename='breed')
+router.register(r'dogs', views.DogViewSet, basename='dog')
 
 urlpatterns = [
     path('', include(router.urls)),
