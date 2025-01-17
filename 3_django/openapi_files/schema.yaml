@@ -1,0 +1,825 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /api/breeds/:
+    get:
+      operationId: api_breeds_list
+      description: API endpoint that allows breeds to be viewed or edited.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBreedListList'
+          description: ''
+    post:
+      operationId: api_breeds_create
+      description: API endpoint that allows breeds to be viewed or edited.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BreedList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BreedList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BreedList'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BreedList'
+          description: ''
+  /api/breeds/{id}/:
+    get:
+      operationId: api_breeds_retrieve
+      description: API endpoint that allows breeds to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this breed.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breed'
+          description: ''
+    put:
+      operationId: api_breeds_update
+      description: API endpoint that allows breeds to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this breed.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Breed'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Breed'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Breed'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breed'
+          description: ''
+    patch:
+      operationId: api_breeds_partial_update
+      description: API endpoint that allows breeds to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this breed.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedBreed'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedBreed'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedBreed'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breed'
+          description: ''
+    delete:
+      operationId: api_breeds_destroy
+      description: API endpoint that allows breeds to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this breed.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/dogs/:
+    get:
+      operationId: api_dogs_list
+      description: API endpoint that allows dogs to be viewed or edited.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDogListList'
+          description: ''
+    post:
+      operationId: api_dogs_create
+      description: API endpoint that allows dogs to be viewed or edited.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DogList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DogList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DogList'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DogList'
+          description: ''
+  /api/dogs/{id}/:
+    get:
+      operationId: api_dogs_retrieve
+      description: API endpoint that allows dogs to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this dog.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DogDetail'
+          description: ''
+    put:
+      operationId: api_dogs_update
+      description: API endpoint that allows dogs to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this dog.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DogDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DogDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DogDetail'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DogDetail'
+          description: ''
+    patch:
+      operationId: api_dogs_partial_update
+      description: API endpoint that allows dogs to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this dog.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDogDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDogDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDogDetail'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DogDetail'
+          description: ''
+    delete:
+      operationId: api_dogs_destroy
+      description: API endpoint that allows dogs to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this dog.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/schema/:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+components:
+  schemas:
+    Breed:
+      type: object
+      description: Standard serializer for Breed model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 48
+        size:
+          $ref: '#/components/schemas/SizeEnum'
+        friendliness:
+          allOf:
+          - $ref: '#/components/schemas/FriendlinessEnum'
+          minimum: 0
+          maximum: 32767
+        trainability:
+          allOf:
+          - $ref: '#/components/schemas/TrainabilityEnum'
+          minimum: 0
+          maximum: 32767
+        shedding_amount:
+          allOf:
+          - $ref: '#/components/schemas/SheddingAmountEnum'
+          minimum: 0
+          maximum: 32767
+        exercise_needs:
+          allOf:
+          - $ref: '#/components/schemas/ExerciseNeedsEnum'
+          minimum: 0
+          maximum: 32767
+      required:
+      - exercise_needs
+      - friendliness
+      - id
+      - name
+      - shedding_amount
+      - size
+      - trainability
+    BreedList:
+      type: object
+      description: Modified serializer for Breed model - List View.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 48
+        size:
+          $ref: '#/components/schemas/SizeEnum'
+        friendliness:
+          allOf:
+          - $ref: '#/components/schemas/FriendlinessEnum'
+          minimum: 0
+          maximum: 32767
+        trainability:
+          allOf:
+          - $ref: '#/components/schemas/TrainabilityEnum'
+          minimum: 0
+          maximum: 32767
+        shedding_amount:
+          allOf:
+          - $ref: '#/components/schemas/SheddingAmountEnum'
+          minimum: 0
+          maximum: 32767
+        exercise_needs:
+          allOf:
+          - $ref: '#/components/schemas/ExerciseNeedsEnum'
+          minimum: 0
+          maximum: 32767
+        dog_count:
+          type: integer
+          readOnly: true
+      required:
+      - dog_count
+      - exercise_needs
+      - friendliness
+      - id
+      - name
+      - shedding_amount
+      - size
+      - trainability
+    DogDetail:
+      type: object
+      description: Modified serializer for Dog model - Detail View.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 48
+        age:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        breed:
+          type: integer
+        gender:
+          type: string
+          maxLength: 48
+        color:
+          type: string
+          maxLength: 48
+        favorite_food:
+          type: string
+          maxLength: 48
+        favorite_toy:
+          type: string
+          maxLength: 48
+        same_breed_count:
+          type: integer
+          readOnly: true
+      required:
+      - age
+      - breed
+      - color
+      - favorite_food
+      - favorite_toy
+      - gender
+      - id
+      - name
+      - same_breed_count
+    DogList:
+      type: object
+      description: Modified serializer for Dog model - List View.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 48
+        age:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        breed:
+          type: integer
+        gender:
+          type: string
+          maxLength: 48
+        color:
+          type: string
+          maxLength: 48
+        favorite_food:
+          type: string
+          maxLength: 48
+        favorite_toy:
+          type: string
+          maxLength: 48
+        avg_age:
+          type: number
+          format: double
+          readOnly: true
+      required:
+      - age
+      - avg_age
+      - breed
+      - color
+      - favorite_food
+      - favorite_toy
+      - gender
+      - id
+      - name
+    ExerciseNeedsEnum:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    FriendlinessEnum:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    PaginatedBreedListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/BreedList'
+    PaginatedDogListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DogList'
+    PatchedBreed:
+      type: object
+      description: Standard serializer for Breed model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 48
+        size:
+          $ref: '#/components/schemas/SizeEnum'
+        friendliness:
+          allOf:
+          - $ref: '#/components/schemas/FriendlinessEnum'
+          minimum: 0
+          maximum: 32767
+        trainability:
+          allOf:
+          - $ref: '#/components/schemas/TrainabilityEnum'
+          minimum: 0
+          maximum: 32767
+        shedding_amount:
+          allOf:
+          - $ref: '#/components/schemas/SheddingAmountEnum'
+          minimum: 0
+          maximum: 32767
+        exercise_needs:
+          allOf:
+          - $ref: '#/components/schemas/ExerciseNeedsEnum'
+          minimum: 0
+          maximum: 32767
+    PatchedDogDetail:
+      type: object
+      description: Modified serializer for Dog model - Detail View.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 48
+        age:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        breed:
+          type: integer
+        gender:
+          type: string
+          maxLength: 48
+        color:
+          type: string
+          maxLength: 48
+        favorite_food:
+          type: string
+          maxLength: 48
+        favorite_toy:
+          type: string
+          maxLength: 48
+        same_breed_count:
+          type: integer
+          readOnly: true
+    SheddingAmountEnum:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    SizeEnum:
+      enum:
+      - tiny
+      - small
+      - medium
+      - large
+      type: string
+      description: |-
+        * `tiny` - Tiny
+        * `small` - Small
+        * `medium` - Medium
+        * `large` - Large
+    TrainabilityEnum:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
