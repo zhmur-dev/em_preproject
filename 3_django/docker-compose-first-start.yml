@@ -18,6 +18,7 @@ services:
     env_file:
       - ../.env
     command: gunicorn --bind 0.0.0.0:8000 dog_api.wsgi
+    entrypoint: ["/app/entrypoint.sh"]
     volumes:
       - static:/app/static/
     depends_on:
