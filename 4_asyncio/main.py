@@ -1,5 +1,7 @@
-from src import sync_parser
+import asyncio
+
+from src import async_parser
 
 
 if __name__ == '__main__':
-    sync_parser.run()
+    asyncio.run(async_parser.run())
