@@ -9,7 +9,7 @@ from .config import (
     END_DATE, FILENAME, LOCAL_DIR, ParsMsg, SHEET_NAME,
     START_DATE, START_ROW, STOP_ROW, URL
 )
-from .database import engine, SpimexTradingResults
+from .sync_db import engine, SpimexTradingResults
 from .logger import logger
 
 
