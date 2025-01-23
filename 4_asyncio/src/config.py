@@ -18,7 +18,6 @@ DB_PASS = os.environ.get('DB_PASS')
 
 # Logger config
 LOG_DIR = BASE_DIR + '/logs/'
-LOG_FILE = 'log.txt'
 LOG_FORMAT = '%(asctime)s [%(levelname)s] %(funcName)s %(message)s'
 LOGFILE_MAXSIZE = 1024 * 1024
 LOGFILES_MAX = 10
@@ -26,7 +25,8 @@ LOGFILES_MAX = 10
 # Parser config
 START_DATE = date(year=2023, month=1, day=1)
 END_DATE = date.today()
-LOCAL_DIR = BASE_DIR + '/spimex/'
+LOCAL_DIR = BASE_DIR + '/spimex_sync/'
+LOCAL_DIR_ASYNC = BASE_DIR + '/spimex_async/'
 URL = 'https://spimex.com/upload/reports/oil_xls/'
 FILENAME = 'oil_xls_{year}{month}{day}162000.xls'
 SHEET_NAME = 'TRADE_SUMMARY'

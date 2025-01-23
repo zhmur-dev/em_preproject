@@ -9,8 +9,10 @@ from .config import (
     END_DATE, FILENAME, LOCAL_DIR, ParsMsg, SHEET_NAME,
     START_DATE, START_ROW, STOP_ROW, URL
 )
+from .logger import get_logger
 from .sync_db import engine, SpimexTradingResults
-from .logger import logger
+
+logger = get_logger('sync_parser')
 
 
 def date_to_filename(date_obj):
@@ -144,6 +146,7 @@ def report(started_at, done_at):
     elapsed_time = (done_at - started_at).seconds
     logger.info(f'{ParsMsg.PARSER_REPORT}'
                 f'{elapsed_time // 60} min {elapsed_time % 60} sec')
+    return elapsed_time
 
 def run():
     """
@@ -156,4 +159,4 @@ def run():
     add_to_db(get_files())
     done_at = dt.now()
     logger.info(ParsMsg.PARSER_DONE)
-    report(started_at, done_at)
+    return report(started_at, done_at)
