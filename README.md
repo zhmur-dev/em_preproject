@@ -12,6 +12,9 @@ This repository is a set of various modules for work.
 ### Django
 1. dog_api [>>>](https://github.com/zhmur-dev/em_preproject/tree/main/3_django)
 
+### Asyncio
+1. Async Spimex parser [>>>](https://github.com/zhmur-dev/em_preproject/tree/main/4_asyncio)
+
 ---
 
 Developed by Alexander [zhmur-dev](https://github.com/zhmur-dev) Zhmurkov in 2024-2025
