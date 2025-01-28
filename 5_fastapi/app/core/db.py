@@ -6,10 +6,13 @@ from core.config import settings
 
 engine = create_async_engine(settings.database_url, echo=True)
 
-# noinspection PyTypeChecker
-async_session = sessionmaker(
-    bind=engine, class_=AsyncSession, expire_on_commit=False
-)
-
-
 class Base(DeclarativeBase): pass
+
+
+# noinspection PyTypeChecker
+AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession)
+
+
+async def get_async_session():
+    async with AsyncSessionLocal() as async_session:
+        yield async_session
